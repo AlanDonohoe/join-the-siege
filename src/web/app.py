@@ -1,6 +1,6 @@
 from flask import Flask, request, Response, jsonify
 
-from src.classifier import classify_file
+from src.services.file_classifiers.classifier import Classifier
 from src.web.validators.file_name import FileNameValidator
 
 app = Flask(__name__)
@@ -12,7 +12,8 @@ def classify_file_route() -> Response:
     if not file_name_validation.valid:
         return jsonify({"error": file_name_validation.error_message}), 400
 
-    file_class = classify_file(request.files["file"])
+    file_class = Classifier.classify(request.files["file"])
+
     return jsonify({"file_class": file_class}), 200
 
 
