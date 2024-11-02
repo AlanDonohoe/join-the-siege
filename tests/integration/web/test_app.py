@@ -24,12 +24,34 @@ def test_no_selected_file(client):
     assert response.status_code == 400
 
 
-def test_success(client, mocker):
-    mocker.patch("src.web.app.classify_file", return_value="test_class")
+def test_success_bank_statement(client):
+    data = {"file": (BytesIO(b"dummy content"), "alans bank_statement.pdf")}
 
-    data = {"file": (BytesIO(b"dummy content"), "file.pdf")}
     response = client.post(
         "/classify_file", data=data, content_type="multipart/form-data"
     )
+
     assert response.status_code == 200
-    assert response.get_json() == {"file_class": "test_class"}
+    assert response.get_json() == {"file_class": "bank_statement"}
+
+
+def test_success_drivers_license(client):
+    data = {"file": (BytesIO(b"dummy content"), "alans drivers_license.pdf")}
+
+    response = client.post(
+        "/classify_file", data=data, content_type="multipart/form-data"
+    )
+
+    assert response.status_code == 200
+    assert response.get_json() == {"file_class": "drivers_license"}
+
+
+def test_success_invoice(client):
+    data = {"file": (BytesIO(b"dummy content"), "alans invoice.pdf")}
+
+    response = client.post(
+        "/classify_file", data=data, content_type="multipart/form-data"
+    )
+
+    assert response.status_code == 200
+    assert response.get_json() == {"file_class": "invoice"}
