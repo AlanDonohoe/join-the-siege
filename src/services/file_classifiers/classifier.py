@@ -1,4 +1,3 @@
-
 from werkzeug.datastructures import FileStorage
 
 from .heron_data.classifier import Classifier as HeronDataClassifier
