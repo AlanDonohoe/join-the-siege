@@ -5,6 +5,7 @@ from src.web.validators.file_name import FileNameValidator
 
 app = Flask(__name__)
 
+
 @app.route("/classify_file", methods=["POST"])
 def classify_file_route() -> Response:
     file_name_validation = FileNameValidator.call(request.files)
