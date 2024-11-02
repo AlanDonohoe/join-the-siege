@@ -6,7 +6,7 @@ def classify_file(file: FileStorage):
     # file_bytes = file.read()
 
     if "drivers_license" in filename:
-        return "drivers_licence"
+        return "drivers_license"
 
     if "bank_statement" in filename:
         return "bank_statement"
