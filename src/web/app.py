@@ -1,6 +1,6 @@
 from flask import Flask, request, Response, jsonify
 
-from src.services.file_classifiers.classifier import Classifier
+from src.services.files.classifiers.classifier import Classifier
 from src.web.validators.file_name import FileNameValidator
 
 app = Flask(__name__)
