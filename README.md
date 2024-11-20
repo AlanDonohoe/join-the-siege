@@ -1,6 +1,6 @@
 # Heron Coding Challenge - File Classifier
 
-Please see below for the original Heron Data Challenge ReadMe (from https://github.com/heron-data/join-the-siege)... 
+Please see below for the original Heron Data Challenge ReadMe (from https://github.com/heron-data/join-the-siege)...  </br>
 This 👇 is my write up for the challenge.
 
 ## Heron Data - Tech Take Home - Join The Siege - Project Write Up - Alan Donohoe
@@ -39,7 +39,8 @@ Starting with the quickest, most simple solution, and evolve into more complexit
 
 The checking of the file name for presence of "drivers_licence", "bank_statement" or "invoice" is probably the most simplest, but is not reliable, nor extendable, and so is not meeting the requirements/ is a bad design. We can consider this:  </br>
 
-_Solution # 1: A Classifier based solely on file name._
+_Solution # 1: A Classifier based solely on file name._</br>
+
 
 
 _Solution #2: Google's Document AI API._ </br>
@@ -60,27 +61,29 @@ With this, outsourced/3rd party/ off the shelf approach, we could build in redun
 Benchmarking Google's Document AI </br>
 TODO: Post the 9 documents we have in our initial data sample to Google's Document AI API and measure latency. </br>
 Refs: </br>
-https://cloud.google.com/document-ai-workbench/?hl=en
-https://learn.microsoft.com/en-gb/azure/ai-services/document-intelligence/overview?view=doc-intel-4.0.0#custom-classification-model
+https://cloud.google.com/document-ai-workbench/?hl=en  </br>
+https://learn.microsoft.com/en-gb/azure/ai-services/document-intelligence/overview?view=doc-intel-4.0.0#custom-classification-model </br>
 
 
-For the sake of this exercise, let's go further to demonstrate some other ideas.
+For the sake of this exercise, let's go further to demonstrate some other ideas.</br>
+
 
 
 _Solution #3: Fine-Tuning Google's Document AI API </br>_
-The next solution (in order of increasing complexity) would be to fine-tune Google's Document AI model with our own data, rather than just using the pre-trained model off the shelf.
-As this exercise is an opportunity for me to showcase more of my skillset than calling Google's APIs, I will proceed with the next complex solution, fine-tuning a pre-trained CNN model.
-Refs:
-https://cloud.google.com/document-ai/docs/ce-with-genai
-https://cloud.google.com/document-ai/docs/custom-classifier
+The next solution (in order of increasing complexity) would be to fine-tune Google's Document AI model with our own data, rather than just using the pre-trained model off the shelf. </br>
+As this exercise is an opportunity for me to showcase more of my skillset than calling Google's APIs, I will proceed with the next complex solution, fine-tuning a pre-trained CNN model. </br>
+Refs:  </br>
+https://cloud.google.com/document-ai/docs/ce-with-genai </br>
+https://cloud.google.com/document-ai/docs/custom-classifier </br>
 
 
-_Solution #4: Fine-Tuning A Pre-Trained CNN Model_
+
+_Solution #4: Fine-Tuning A Pre-Trained CNN Model_ </br>
 "ResNet-18 is a powerful and efficient CNN architecture. Its relatively shallow depth compared to other ResNet variants makes it suitable for tasks requiring lower computational resources while still providing strong performance on image classification tasks."
 
 
-So we will start by fine-tuning a ResNet-18 model using PyTorch.
-https://colab.research.google.com/drive/1YZ1FJhMkddRZ7cNwDtJ3aE9GamG5k0oe?usp=sharing
+So we will start by fine-tuning a ResNet-18 model using PyTorch. </br>
+https://colab.research.google.com/drive/1YZ1FJhMkddRZ7cNwDtJ3aE9GamG5k0oe?usp=sharing </br>
 I was unable to, within the time constraint on this project, pull extra training data (images of bank statements, invoices, driving licenses) via my usual method (calls to DuckDuckGo) in the above Pytorch based Colab notebook.  </br>
 So for speed I feel back to my usual fast and scrappy approach for these prototype projects: running my existing Kaggle Notebook that uses FastAI to collect training data and fine-tune ResNet18 with them. </br>
 I collected around 100 images from each category and used these to fine-tune the model over the three categories. </br>
